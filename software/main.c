@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/sleep.h>
 
 void setupPWM() {
     // Set PB0 as output
@@ -23,8 +24,14 @@ int main() {
     // Set the fan speed to 50%
     setupPWM();
 
-    // Main loop (empty, PWM runs automatically)
+    // Set sleep mode to power down
+    set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+
+    // Main loop
     while (1) {
+        // Enter sleep mode
+        sleep_mode();
+
         // Do nothing, PWM is handled by hardware
     }
 
